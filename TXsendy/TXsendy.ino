@@ -9,12 +9,19 @@
 void setup() 
 {
   Serial.begin(9600);
-  pinMode(CE,  OUTPUT);
-  pinMode(CSN, OUTPUT);
+  //pinMode(CE,  OUTPUT);
+  //pinMode(CSN, OUTPUT);
   pinMode(IRQ, INPUT);
   pinMode(pin1, INPUT);
   pinMode(pin2, INPUT);
- 
+
+  for (int i = 0; i < 20; i++) 
+  {
+    if((i != 8)&&(i != 3)&&(i != 2))
+    {
+        pinMode(i, OUTPUT);
+    }
+  }  
   SPI.begin();
   delay(50);
   init_io();                        // Initialize IO port
@@ -25,8 +32,8 @@ void setup()
   TX_Mode();
   delay(100);
   
-  attachInterrupt(0, turn_on, RISING);
-  attachInterrupt(1, turn_off, RISING);
+  attachInterrupt(0, wake, RISING);
+  attachInterrupt(1, wake, RISING);
   set_sleep_mode(SLEEP_MODE_PWR_DOWN);   // sleep mode is set here  
   sleep_enable();
 }
@@ -36,6 +43,8 @@ void loop()
   sleep_mode();
   delay(10);
   sendy();
+  delay(500);
+  digitalWrite(5, LOW);
   
 }
 
@@ -62,20 +71,22 @@ void sendy(void)
     delay(10);
     SPI_RW_Reg(WRITE_REG + CONFIG, 0x0C);
 }
-void turn_on(void)
+
+void wake(void)
 {
   sleep_disable();
-  Serial.println("ON");
-  memcpy(tx_buf, SW_ON, strlen(SW_ON)+1);       //copy SW_ON to tx_buf
+  digitalWrite(5, HIGH);
+  if (digitalRead(2) == HIGH)
+  {
+    Serial.println("ON");
+    memcpy(tx_buf, SW_ON, strlen(SW_ON)+1);
+  }
+  else
+  {
+    Serial.println("OFF");
+    memcpy(tx_buf, SW_OFF, strlen(SW_OFF)+1);
+  }
 }
-
-void turn_off(void)
-{
-  sleep_disable();
-  Serial.println("OFF");
-  memcpy(tx_buf, SW_OFF, strlen(SW_OFF)+1);       //copy SW_OFF to tx_buf
-}
-
 void init_io(void)
 {
   digitalWrite(IRQ, 0);
