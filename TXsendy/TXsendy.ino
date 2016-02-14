@@ -9,8 +9,6 @@
 void setup() 
 {
   Serial.begin(9600);
-  //pinMode(CE,  OUTPUT);
-  //pinMode(CSN, OUTPUT);
   pinMode(IRQ, INPUT);
   pinMode(pin1, INPUT);
   pinMode(pin2, INPUT);
@@ -24,7 +22,6 @@ void setup()
   digitalWrite(4, HIGH);
   digitalWrite(6, HIGH);
   SPI.begin();
-  delay(50);
   init_io();                        // Initialize IO port
   unsigned char sstatus=SPI_Read(STATUS);
   Serial.println("*******************TX_Mode Start****************************");
@@ -32,7 +29,6 @@ void setup()
   Serial.println(sstatus,HEX);     // There is read the mode’s status register, the default value should be ‘E’
   TX_Mode();
   delay(100);
-  
   attachInterrupt(0, wake, RISING);
   attachInterrupt(1, wake, RISING);
   set_sleep_mode(SLEEP_MODE_PWR_DOWN);   // sleep mode is set here  
@@ -41,6 +37,7 @@ void setup()
 
 void loop() 
 {
+  digitalWrite(6, LOW);
   sleep_mode();
   delay(10);
   sendy();
@@ -77,10 +74,11 @@ void sendy(void)
 
 void wake(void)
 {
+  digitalWrite(6, HIGH);
   sleep_disable();
   Serial.print("Button: ");
   digitalWrite(5, HIGH);
-  if (digitalRead(2) == HIGH)
+  if (digitalRead(pin1) == HIGH)
   {
     Serial.println("ON");
     memcpy(tx_buf, SW_ON, strlen(SW_ON)+1);
@@ -91,10 +89,11 @@ void wake(void)
     memcpy(tx_buf, SW_OFF, strlen(SW_OFF)+1);
   }
 }
+
 void init_io(void)
 {
   digitalWrite(IRQ, 0);
   digitalWrite(CE, 0);      // chip enable
-  digitalWrite(CSN, 1);                 // Spi disable  
+    digitalWrite(CSN, 1);  // Spi disable  
 }
 
