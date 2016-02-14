@@ -14,14 +14,15 @@ void setup()
   pinMode(IRQ, INPUT);
   pinMode(pin1, INPUT);
   pinMode(pin2, INPUT);
-
   for (int i = 0; i < 20; i++) 
   {
     if((i != 8)&&(i != 3)&&(i != 2))
     {
         pinMode(i, OUTPUT);
     }
-  }  
+  }
+  digitalWrite(4, HIGH);
+  digitalWrite(6, HIGH);
   SPI.begin();
   delay(50);
   init_io();                        // Initialize IO port
@@ -44,6 +45,8 @@ void loop()
   delay(10);
   sendy();
   delay(500);
+  attachInterrupt(0, wake, RISING);
+  attachInterrupt(1, wake, RISING);
   digitalWrite(5, LOW);
   
 }
@@ -75,6 +78,7 @@ void sendy(void)
 void wake(void)
 {
   sleep_disable();
+  Serial.print("Button: ");
   digitalWrite(5, HIGH);
   if (digitalRead(2) == HIGH)
   {
