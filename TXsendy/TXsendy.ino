@@ -6,13 +6,14 @@
 
 #define pin1    2
 #define pin2    3
-void setup() 
+
+void setup()
 {
   Serial.begin(9600);
   pinMode(IRQ, INPUT);
   pinMode(pin1, INPUT);
   pinMode(pin2, INPUT);
-  for (int i = 0; i < 20; i++) 
+  for (int i = 0; i < 20; i++)
   {
     if((i != 8)&&(i != 3)&&(i != 2))
     {
@@ -25,40 +26,40 @@ void setup()
   init_io();                        // Initialize IO port
   unsigned char sstatus=SPI_Read(STATUS);
   Serial.println("*******************TX_Mode Start****************************");
-  Serial.print("status = ");    
+  Serial.print("status = ");
   Serial.println(sstatus,HEX);     // There is read the mode’s status register, the default value should be ‘E’
   TX_Mode();
   delay(100);
   attachInterrupt(0, wake, RISING);
   attachInterrupt(1, wake, RISING);
-  set_sleep_mode(SLEEP_MODE_PWR_DOWN);   // sleep mode is set here  
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN);   // sleep mode is set here
   sleep_enable();
 }
 
-void loop() 
+void loop()
 {
   digitalWrite(6, LOW);
   sleep_mode();
   delay(10);
-  sendy();
+  send();
   delay(500);
   attachInterrupt(0, wake, RISING);
   attachInterrupt(1, wake, RISING);
   digitalWrite(5, LOW);
-  
+
 }
 
-void sendy(void)
+void send(void)
 {
     SPI_RW_Reg(WRITE_REG + CONFIG, 0x0E);         //nRF24L01 POWER ON
-           
+
     unsigned char sstatus = SPI_Read(STATUS);                   // read register STATUS's value
     if(sstatus&TX_DS)                                           // if receive data ready (TX_DS) interrupt
     {
-      SPI_RW_Reg(FLUSH_TX,0);                                  
+      SPI_RW_Reg(FLUSH_TX,0);
       SPI_Write_Buf(WR_TX_PLOAD,tx_buf,TX_PLOAD_WIDTH);       // write playload to TX_FIFO
     }
-    if(sstatus&MAX_RT)                                         // if receive data ready (MAX_RT) interrupt, this is retransmit than  SETUP_RETR                          
+    if(sstatus&MAX_RT)                                         // if receive data ready (MAX_RT) interrupt, this is retransmit than  SETUP_RETR
     {
       SPI_RW_Reg(FLUSH_TX,0);
       SPI_Write_Buf(WR_TX_PLOAD,tx_buf,TX_PLOAD_WIDTH);      // disable standy-mode
@@ -94,6 +95,5 @@ void init_io(void)
 {
   digitalWrite(IRQ, 0);
   digitalWrite(CE, 0);      // chip enable
-    digitalWrite(CSN, 1);  // Spi disable  
+    digitalWrite(CSN, 1);  // Spi disable
 }
-

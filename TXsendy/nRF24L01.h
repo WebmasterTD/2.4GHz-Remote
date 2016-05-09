@@ -3,7 +3,7 @@
 
 #include "API.h"
 //---------------------------------------------
-// You can change the define pin. 
+// You can change the define pin.
 #define CE       9
 // CE_BIT:   Digital Input     Chip Enable Activates RX or TX mode
 
@@ -14,7 +14,6 @@
 // IRQ BIT:  Digital Output    Maskable interrupt pin
 #define TX_ADR_WIDTH    5   // 5 unsigned chars TX(RX) address width
 #define TX_PLOAD_WIDTH  32   // 32 unsigned chars TX payload
-//*********************************************
 const char SW_OFF[TX_PLOAD_WIDTH]  = {8,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
 const char SW_ON[TX_PLOAD_WIDTH]  = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
 unsigned char TX_ADDRESS[TX_ADR_WIDTH]  = {0x27,0x43,0x10,0x12,0x01};
