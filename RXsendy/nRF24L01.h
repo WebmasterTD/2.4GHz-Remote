@@ -19,14 +19,12 @@ const char SW_ON[TX_PLOAD_WIDTH]  = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17
 unsigned char TX_ADDRESS[TX_ADR_WIDTH]  = {0x27,0x43,0x10,0x12,0x01}; // Define a static TX address
 unsigned char rx_buf[TX_PLOAD_WIDTH] = {0}; // initialize value
 unsigned char tx_buf[TX_PLOAD_WIDTH] = {0};
-//***************************************************
 
 
 unsigned char SPI_RW(unsigned char Byte)
 {
   return SPI.transfer(Byte);
 }
-
 
 unsigned char SPI_RW_Reg(unsigned char reg, unsigned char value)
 {

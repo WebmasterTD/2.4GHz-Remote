@@ -29,9 +29,13 @@ void loop()
     {
       Serial.println("ON");
     }
-    if(memcmp(rx_buf, SW_OFF, strlen(SW_OFF)+1) == 0)
+    else if(memcmp(rx_buf, SW_OFF, strlen(SW_OFF)+1) == 0)
     {
       Serial.println("OFF");
+    }
+    else
+    {
+      Serial.println("lols");
     }
   }
   SPI_RW_Reg(WRITE_REG+STATUS,status);                             // clear RX_DR or TX_DS or MAX_RT interrupt flag
