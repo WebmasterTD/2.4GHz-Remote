@@ -27,7 +27,7 @@ void setup()
   unsigned char sstatus=SPI_Read(STATUS);
   Serial.println("*******************TX_Mode Start****************************");
   Serial.print("status = ");
-  Serial.println(sstatus,HEX);     // There is read the mode’s status register, the default value should be ‘E’
+  Serial.println(sstatus,HEX);  // There is read the mode’s status register, the default value should be ‘E’
   TX_Mode();
   delay(100);
   attachInterrupt(0, wake, RISING);
@@ -82,12 +82,12 @@ void wake(void)
   if (digitalRead(pin1) == HIGH)
   {
     Serial.println("ON");
-    memcpy(tx_buf, SW_ON, strlen(SW_ON)+1);
+    memcpy(tx_buf, SW_ON, sizeof(SW_ON));
   }
   else
   {
     Serial.println("OFF");
-    memcpy(tx_buf, SW_OFF, strlen(SW_OFF)+1);
+    memcpy(tx_buf, SW_OFF, sizeof(SW_OFF));
   }
 }
 
