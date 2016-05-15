@@ -21,6 +21,7 @@ void setup()
     }
   }
   digitalWrite(4, HIGH);
+  digitalWrite(5, HIGH);
   digitalWrite(6, HIGH);
   SPI.begin();
   init_io();                        // Initialize IO port
@@ -30,8 +31,9 @@ void setup()
   Serial.println(sstatus,HEX);  // There is read the mode’s status register, the default value should be ‘E’
   TX_Mode();
   delay(100);
-  attachInterrupt(0, wake, RISING);
-  attachInterrupt(1, wake, RISING);
+  attachInterrupt(0, wake0, RISING);
+  attachInterrupt(1, wake1, RISING);
+  digitalWrite(5, LOW);
   set_sleep_mode(SLEEP_MODE_PWR_DOWN);   // sleep mode is set here
   sleep_enable();
 }
@@ -40,11 +42,10 @@ void loop()
 {
   digitalWrite(6, LOW);
   sleep_mode();
-  delay(10);
   send();
-  delay(500);
-  attachInterrupt(0, wake, RISING);
-  attachInterrupt(1, wake, RISING);
+  delay(10);
+  attachInterrupt(0, wake0, RISING);
+  attachInterrupt(1, wake1, RISING);
   digitalWrite(5, LOW);
 
 }
@@ -65,30 +66,14 @@ void send(void)
       SPI_Write_Buf(WR_TX_PLOAD,tx_buf,TX_PLOAD_WIDTH);      // disable standy-mode
     }
     SPI_RW_Reg(WRITE_REG+STATUS,sstatus);                     // clear RX_DR or TX_DS or MAX_RT interrupt flag
-    while((digitalRead(pin1) || digitalRead(pin2)) == LOW)
+    /*
+    while((digitalRead(pin1) || digitalRead(pin2)) == HIGH)
     {
-      //wait
+      Serial.println("WAITING");
     }
+    */
     delay(10);
     SPI_RW_Reg(WRITE_REG + CONFIG, 0x0C);
-}
-
-void wake(void)
-{
-  digitalWrite(6, HIGH);
-  sleep_disable();
-  Serial.print("Button: ");
-  digitalWrite(5, HIGH);
-  if (digitalRead(pin1) == HIGH)
-  {
-    Serial.println("ON");
-    memcpy(tx_buf, SW_ON, sizeof(SW_ON));
-  }
-  else
-  {
-    Serial.println("OFF");
-    memcpy(tx_buf, SW_OFF, sizeof(SW_OFF));
-  }
 }
 
 void init_io(void)
@@ -96,4 +81,30 @@ void init_io(void)
   digitalWrite(IRQ, 0);
   digitalWrite(CE, 0);      // chip enable
     digitalWrite(CSN, 1);  // Spi disable
+}
+
+void wake0(void)
+{
+  sleep_disable();
+  detachInterrupt(0);
+  detachInterrupt(1);
+  digitalWrite(6, HIGH);
+  Serial.print("Button: ");
+  digitalWrite(5, HIGH);
+  Serial.println("ON");
+  memcpy(tx_buf, SW_ON, sizeof(SW_ON));
+  delayMicroseconds(50);
+}
+
+void wake1(void)
+{
+  sleep_disable();
+  detachInterrupt(0);
+  detachInterrupt(1);
+  digitalWrite(6, HIGH);
+  Serial.print("Button: ");
+  digitalWrite(5, HIGH);
+  Serial.println("OFF");
+  memcpy(tx_buf, SW_OFF, sizeof(SW_OFF));
+  delayMicroseconds(50);
 }
