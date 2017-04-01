@@ -4,20 +4,21 @@
 
 void setup()
 {
-  Serial.begin(9600);
+  //Serial.begin(9600);
   pinMode(CE,  OUTPUT);
   pinMode(CSN, OUTPUT);
   pinMode(IRQ, INPUT);
   pinMode(relay, OUTPUT);
+  digitalWrite(relay, HIGH);
   SPI.begin();
   delay(50);
   init_io();                        // Initialize IO port
   unsigned char sstatus=SPI_Read(STATUS);
-  Serial.println("*******************RX_Mode Start****************************");
+ 
+  /*Serial.println("*******************RX_Mode Start****************************");
   Serial.print("status = ");
   Serial.println(sstatus,HEX);   // There is read the mode’s status register, the default value should be ‘E’
-  digitalWrite(relay, HIGH);
-  
+  */
   RX_Mode();                        // set RX mode
 }
 
@@ -33,12 +34,12 @@ void loop()
     off = memcmp(rx_buf, SW_OFF, sizeof(SW_OFF));
     if(on == 0)
     {
-      Serial.println("ON");
+      //Serial.println("ON");
       digitalWrite(relay, LOW);
     }
     else if(off == 0)
     {
-      Serial.println("OFF");
+      //Serial.println("OFF");
       digitalWrite(relay, HIGH);
     }
     /*
