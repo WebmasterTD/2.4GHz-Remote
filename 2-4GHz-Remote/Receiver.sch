@@ -1,0 +1,131 @@
+EESchema Schematic File Version 4
+LIBS:2-4GHz-Remote-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 3 4
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L power:AC #PWR?
+U 1 1 5BC4CFC9
+P 9600 1750
+F 0 "#PWR?" H 9600 1650 50  0001 C CNN
+F 1 "AC" H 9600 2025 50  0000 C CNN
+F 2 "" H 9600 1750 50  0001 C CNN
+F 3 "" H 9600 1750 50  0001 C CNN
+	1    9600 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:Earth #PWR?
+U 1 1 5BC4D05C
+P 9600 3850
+F 0 "#PWR?" H 9600 3600 50  0001 C CNN
+F 1 "Earth" H 9600 3700 50  0001 C CNN
+F 2 "" H 9600 3850 50  0001 C CNN
+F 3 "~" H 9600 3850 50  0001 C CNN
+	1    9600 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_SPST SW?
+U 1 1 5BC4D4E2
+P 8450 2250
+F 0 "SW?" H 8450 2485 50  0000 C CNN
+F 1 "SW_SPST" H 8450 2394 50  0000 C CNN
+F 2 "" H 8450 2250 50  0001 C CNN
+F 3 "" H 8450 2250 50  0001 C CNN
+	1    8450 2250
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Motor:Motor_AC M?
+U 1 1 5BC4DA27
+P 7800 2950
+F 0 "M?" H 7958 2946 50  0000 L CNN
+F 1 "Motor_AC" H 7958 2855 50  0000 L CNN
+F 2 "" H 7800 2860 50  0001 C CNN
+F 3 "~" H 7800 2860 50  0001 C CNN
+	1    7800 2950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9600 3850 9600 3650
+Wire Wire Line
+	8450 2450 7800 2450
+Wire Wire Line
+	7800 2450 7800 2750
+Wire Wire Line
+	7800 3250 7800 3650
+Wire Wire Line
+	7800 3650 9600 3650
+$Comp
+L Remote_parts:4PIN_PLUG J?
+U 1 1 5BC61BD1
+P 5250 3650
+F 0 "J?" H 5878 3276 50  0000 L CNN
+F 1 "4PIN_PLUG" H 5878 3185 50  0000 L CNN
+F 2 "" H 5250 4350 50  0001 C CNN
+F 3 "" H 5250 4350 50  0001 C CNN
+	1    5250 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Remote_parts:4PIN_SOCKET J?
+U 1 1 5BC7300A
+P 5250 2950
+F 0 "J?" H 5878 3467 50  0000 L CNN
+F 1 "4PIN_SOCKET" H 5878 3376 50  0000 L CNN
+F 2 "" H 5250 2550 50  0001 C CNN
+F 3 "" H 5250 2550 50  0001 C CNN
+	1    5250 2950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5600 2300 5600 1950
+Wire Wire Line
+	7800 3650 7100 3650
+Wire Wire Line
+	7100 3650 7100 2050
+Wire Wire Line
+	7100 2050 5350 2050
+Wire Wire Line
+	5350 2050 5350 2300
+Connection ~ 7800 3650
+Wire Wire Line
+	7800 2450 7800 1950
+Wire Wire Line
+	5600 1950 7800 1950
+Connection ~ 7800 2450
+Wire Wire Line
+	4900 1850 8450 1850
+Wire Wire Line
+	8450 1850 8450 2050
+Wire Wire Line
+	4900 1850 4900 2300
+Wire Wire Line
+	8450 1850 9600 1850
+Wire Wire Line
+	9600 1850 9600 1750
+Connection ~ 8450 1850
+Wire Wire Line
+	5350 2050 5150 2050
+Wire Wire Line
+	5150 2050 5150 2300
+Connection ~ 5350 2050
+$Sheet
+S 4550 5400 1400 1200
+U 5BC7EAF9
+F0 "Sheet5BC7EAF8" 50
+F1 "Monstrum.sch" 50
+$EndSheet
+$EndSCHEMATC
