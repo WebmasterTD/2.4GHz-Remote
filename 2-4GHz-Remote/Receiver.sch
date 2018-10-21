@@ -69,9 +69,11 @@ Wire Wire Line
 Wire Wire Line
 	7800 3650 9600 3650
 $Comp
-L Remote_parts:4PIN_PLUG J?
+L 2-4GHz-Remote-rescue:4PIN_PLUG-Remote_parts J?
 U 1 1 5BC61BD1
 P 5250 3650
+AR Path="/5BC61BD1" Ref="J?"  Part="1" 
+AR Path="/5BC4CC0A/5BC61BD1" Ref="J?"  Part="1" 
 F 0 "J?" H 5878 3276 50  0000 L CNN
 F 1 "4PIN_PLUG" H 5878 3185 50  0000 L CNN
 F 2 "" H 5250 4350 50  0001 C CNN
@@ -80,7 +82,7 @@ F 3 "" H 5250 4350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Remote_parts:4PIN_SOCKET J?
+L 2-4GHz-Remote-rescue:4PIN_SOCKET-Remote_parts J?
 U 1 1 5BC7300A
 P 5250 2950
 F 0 "J?" H 5878 3467 50  0000 L CNN

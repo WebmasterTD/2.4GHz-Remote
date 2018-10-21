@@ -1,3 +1,4 @@
 (sym_lib_table
   (lib (name Remote_parts)(type Legacy)(uri /home/webmastertd/Programming/2.4GHz-Remote/2-4GHz-Remote/Remote_parts.lib)(options "")(descr ""))
+  (lib (name 2-4GHz-Remote-rescue)(type Legacy)(uri ${KIPRJMOD}/2-4GHz-Remote-rescue.lib)(options "")(descr ""))
 )

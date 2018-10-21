@@ -40,18 +40,6 @@ F 3 "~" H 5700 6850 50  0001 C CNN
 	1    5700 6850
 	1    0    0    -1  
 $EndComp
-Text GLabel 5400 6850 0    50   Input ~ 0
-CE
-Text GLabel 5400 6950 0    50   Input ~ 0
-SCk
-Text GLabel 5400 7050 0    50   Input ~ 0
-MISO
-Text GLabel 6050 6850 2    50   Input ~ 0
-CSN
-Text GLabel 6050 6950 2    50   Input ~ 0
-MOSI
-Text GLabel 6050 7050 2    50   Input ~ 0
-IRQ
 Wire Wire Line
 	6000 6850 6050 6850
 Wire Wire Line
@@ -77,27 +65,10 @@ F 3 "" H 5050 6750 50  0001 C CNN
 	1    5050 6750
 	1    0    0    -1  
 $EndComp
-$Comp
-L power:+3.3V #PWR?
-U 1 1 5BC7FEA1
-P 6200 6600
-AR Path="/5BC4CC0A/5BC7FEA1" Ref="#PWR?"  Part="1" 
-AR Path="/5BC4CC0A/5BC7EAF9/5BC7FEA1" Ref="#PWR?"  Part="1" 
-F 0 "#PWR?" H 6200 6450 50  0001 C CNN
-F 1 "+3.3V" H 6215 6773 50  0000 C CNN
-F 2 "" H 6200 6600 50  0001 C CNN
-F 3 "" H 6200 6600 50  0001 C CNN
-	1    6200 6600
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	6000 6750 6200 6750
 Wire Wire Line
-	6200 6750 6200 6600
-Wire Wire Line
 	5050 6750 5500 6750
-Text GLabel 8200 2650 0    50   Input ~ 0
-REL
 Wire Wire Line
 	8200 2650 8350 2650
 $Comp
@@ -159,8 +130,8 @@ U 1 1 5BC7FE57
 P 2950 5250
 AR Path="/5BC4CC0A/5BC7FE57" Ref="A?"  Part="1" 
 AR Path="/5BC4CC0A/5BC7EAF9/5BC7FE57" Ref="A?"  Part="1" 
-F 0 "A?" H 2950 4164 50  0000 C CNN
-F 1 "Arduino_Nano_v3.x" H 2950 4073 50  0000 C CNN
+F 0 "A?" H 3250 4200 50  0000 C CNN
+F 1 "Arduino_Nano_v3.x" H 2550 4200 50  0000 C CNN
 F 2 "Module:Arduino_Nano" H 3100 4300 50  0001 L CNN
 F 3 "http://www.mouser.com/pdfdocs/Gravitech_Arduino_Nano3_0.pdf" H 2950 4250 50  0001 C CNN
 	1    2950 5250
@@ -184,4 +155,190 @@ Wire Wire Line
 	7950 1950 9400 1950
 Wire Wire Line
 	9400 1950 9400 1650
+$Comp
+L Converter_ACDC:RAC01-12SGB PS?
+U 1 1 5BC87834
+P 8750 3700
+F 0 "PS?" H 8750 4067 50  0000 C CNN
+F 1 "RAC01-12SGB" H 8750 3976 50  0000 C CNN
+F 2 "Converter_ACDC:Converter_ACDC_RECOM_RAC01-xxSGB_THT" H 8750 3450 50  0001 C CNN
+F 3 "https://www.recom-power.com/pdf/Powerline-AC-DC/RAC01-GB.pdf" H 8600 3700 50  0001 C CNN
+	1    8750 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7950 1950 7950 3800
+Wire Wire Line
+	7950 3800 8350 3800
+Connection ~ 7950 1950
+Wire Wire Line
+	8350 3600 7700 3600
+Wire Wire Line
+	7700 3600 7700 2350
+Connection ~ 7700 2350
+$Comp
+L Device:LED D?
+U 1 1 5BC88841
+P 10600 5200
+F 0 "D?" V 10638 5083 50  0000 R CNN
+F 1 "LED" V 10547 5083 50  0000 R CNN
+F 2 "" H 10600 5200 50  0001 C CNN
+F 3 "~" H 10600 5200 50  0001 C CNN
+	1    10600 5200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L pspice:C C?
+U 1 1 5BC889C1
+P 10100 3700
+F 0 "C?" V 9785 3700 50  0000 C CNN
+F 1 "C" V 9876 3700 50  0000 C CNN
+F 2 "" H 10100 3700 50  0001 C CNN
+F 3 "~" H 10100 3700 50  0001 C CNN
+	1    10100 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D_Bridge_+-AA D?
+U 1 1 5BC88C8C
+P 10100 4750
+F 0 "D?" H 10441 4796 50  0000 L CNN
+F 1 "D_Bridge_+-AA" H 10441 4705 50  0000 L CNN
+F 2 "" H 10100 4750 50  0001 C CNN
+F 3 "~" H 10100 4750 50  0001 C CNN
+	1    10100 4750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10400 4750 10600 4750
+Wire Wire Line
+	10600 4750 10600 5050
+Wire Wire Line
+	9800 4750 9800 5500
+Wire Wire Line
+	9800 5500 10600 5500
+Wire Wire Line
+	10600 5500 10600 5350
+$Comp
+L Device:R R?
+U 1 1 5BC8C545
+P 10100 4200
+F 0 "R?" H 10170 4246 50  0000 L CNN
+F 1 "R" H 10170 4155 50  0000 L CNN
+F 2 "" V 10030 4200 50  0001 C CNN
+F 3 "~" H 10100 4200 50  0001 C CNN
+	1    10100 4200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10100 3950 10100 4050
+Wire Wire Line
+	10100 4350 10100 4450
+Wire Wire Line
+	10100 3450 10100 2850
+Wire Wire Line
+	10100 2850 9650 2850
+Connection ~ 9650 2850
+Wire Wire Line
+	7950 3800 7950 5300
+Wire Wire Line
+	7950 5300 10100 5300
+Wire Wire Line
+	10100 5300 10100 5050
+Connection ~ 7950 3800
+$Comp
+L power:GND #PWR?
+U 1 1 5BC90634
+P 9350 3950
+AR Path="/5BC4CC0A/5BC90634" Ref="#PWR?"  Part="1" 
+AR Path="/5BC4CC0A/5BC7EAF9/5BC90634" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 9350 3700 50  0001 C CNN
+F 1 "GND" H 9355 3777 50  0000 C CNN
+F 2 "" H 9350 3950 50  0001 C CNN
+F 3 "" H 9350 3950 50  0001 C CNN
+	1    9350 3950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9150 3800 9350 3800
+Wire Wire Line
+	9350 3800 9350 3950
+$Comp
+L power:GND #PWR?
+U 1 1 5BC9316B
+P 3000 6350
+AR Path="/5BC4CC0A/5BC9316B" Ref="#PWR?"  Part="1" 
+AR Path="/5BC4CC0A/5BC7EAF9/5BC9316B" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 3000 6100 50  0001 C CNN
+F 1 "GND" H 3005 6177 50  0000 C CNN
+F 2 "" H 3000 6350 50  0001 C CNN
+F 3 "" H 3000 6350 50  0001 C CNN
+	1    3000 6350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3000 6350 3050 6350
+Wire Wire Line
+	2950 6350 3000 6350
+Connection ~ 3000 6350
+Text Label 3050 3900 0    50   ~ 0
+3.3V
+Wire Wire Line
+	3050 4250 3050 3900
+Text Label 9350 3600 0    50   ~ 0
+12V
+Wire Wire Line
+	9150 3600 9350 3600
+Text Label 3150 4000 0    50   ~ 0
+5V
+Text Label 2850 4000 0    50   ~ 0
+5V
+Text Label 6050 6850 0    50   ~ 0
+CSN
+Text Label 6050 6950 0    50   ~ 0
+MOSI
+Text Label 6050 7050 0    50   ~ 0
+IRQ
+Text Label 5400 6850 2    50   ~ 0
+CE
+Text Label 5400 6950 2    50   ~ 0
+SCK
+Text Label 5400 7050 2    50   ~ 0
+MISO
+Text Label 6200 6750 0    50   ~ 0
+3.3V
+Text Label 2250 5550 2    50   ~ 0
+CE
+Text Label 2250 5950 2    50   ~ 0
+SCK
+Text Label 2250 5850 2    50   ~ 0
+MISO
+Text Label 2250 5650 2    50   ~ 0
+CSN
+Text Label 2250 5750 2    50   ~ 0
+MOSI
+Text Label 2250 5450 2    50   ~ 0
+IRQ
+Wire Wire Line
+	2250 5550 2450 5550
+Wire Wire Line
+	2450 5650 2250 5650
+Wire Wire Line
+	2450 5450 2250 5450
+Text Label 8200 2650 2    50   ~ 0
+REL
+Text Label 2250 5050 2    50   ~ 0
+REL
+Wire Wire Line
+	2450 5050 2250 5050
+Wire Wire Line
+	2450 5950 2250 5950
+Wire Wire Line
+	2450 5750 2250 5750
+Wire Wire Line
+	2450 5850 2250 5850
+Wire Wire Line
+	2950 6250 2950 6350
+Wire Wire Line
+	3050 6250 3050 6350
 $EndSCHEMATC

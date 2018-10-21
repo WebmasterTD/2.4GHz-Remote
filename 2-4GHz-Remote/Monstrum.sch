@@ -40,18 +40,6 @@ F 3 "~" H 5700 6850 50  0001 C CNN
 	1    5700 6850
 	1    0    0    -1  
 $EndComp
-Text GLabel 5400 6850 0    50   Input ~ 0
-CE
-Text GLabel 5400 6950 0    50   Input ~ 0
-SCk
-Text GLabel 5400 7050 0    50   Input ~ 0
-MISO
-Text GLabel 6050 6850 2    50   Input ~ 0
-CSN
-Text GLabel 6050 6950 2    50   Input ~ 0
-MOSI
-Text GLabel 6050 7050 2    50   Input ~ 0
-IRQ
 Wire Wire Line
 	6000 6850 6050 6850
 Wire Wire Line
@@ -77,27 +65,10 @@ F 3 "" H 5050 6750 50  0001 C CNN
 	1    5050 6750
 	1    0    0    -1  
 $EndComp
-$Comp
-L power:+3.3V #PWR?
-U 1 1 5BC7FEA1
-P 6200 6600
-AR Path="/5BC4CC0A/5BC7FEA1" Ref="#PWR?"  Part="1" 
-AR Path="/5BC4CC0A/5BC7EAF9/5BC7FEA1" Ref="#PWR?"  Part="1" 
-F 0 "#PWR?" H 6200 6450 50  0001 C CNN
-F 1 "+3.3V" H 6215 6773 50  0000 C CNN
-F 2 "" H 6200 6600 50  0001 C CNN
-F 3 "" H 6200 6600 50  0001 C CNN
-	1    6200 6600
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	6000 6750 6200 6750
 Wire Wire Line
-	6200 6750 6200 6600
-Wire Wire Line
 	5050 6750 5500 6750
-Text GLabel 8200 2650 0    50   Input ~ 0
-REL
 Wire Wire Line
 	8200 2650 8350 2650
 $Comp
@@ -159,8 +130,8 @@ U 1 1 5BC7FE57
 P 2950 5250
 AR Path="/5BC4CC0A/5BC7FE57" Ref="A?"  Part="1" 
 AR Path="/5BC4CC0A/5BC7EAF9/5BC7FE57" Ref="A?"  Part="1" 
-F 0 "A?" H 2950 4164 50  0000 C CNN
-F 1 "Arduino_Nano_v3.x" H 2950 4073 50  0000 C CNN
+F 0 "A?" H 3250 4200 50  0000 C CNN
+F 1 "Arduino_Nano_v3.x" H 2550 4200 50  0000 C CNN
 F 2 "Module:Arduino_Nano" H 3100 4300 50  0001 L CNN
 F 3 "http://www.mouser.com/pdfdocs/Gravitech_Arduino_Nano3_0.pdf" H 2950 4250 50  0001 C CNN
 	1    2950 5250
@@ -295,23 +266,83 @@ Wire Wire Line
 $Comp
 L power:GND #PWR?
 U 1 1 5BC9316B
-P 3000 6500
+P 3000 6350
 AR Path="/5BC4CC0A/5BC9316B" Ref="#PWR?"  Part="1" 
 AR Path="/5BC4CC0A/5BC7EAF9/5BC9316B" Ref="#PWR?"  Part="1" 
-F 0 "#PWR?" H 3000 6250 50  0001 C CNN
-F 1 "GND" H 3005 6327 50  0000 C CNN
-F 2 "" H 3000 6500 50  0001 C CNN
-F 3 "" H 3000 6500 50  0001 C CNN
-	1    3000 6500
+F 0 "#PWR?" H 3000 6100 50  0001 C CNN
+F 1 "GND" H 3005 6177 50  0000 C CNN
+F 2 "" H 3000 6350 50  0001 C CNN
+F 3 "" H 3000 6350 50  0001 C CNN
+	1    3000 6350
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3000 6500 3050 6500
+	3000 6350 3050 6350
 Wire Wire Line
-	3050 6500 3050 6250
+	2950 6350 3000 6350
+Connection ~ 3000 6350
+Text Label 3050 3900 0    50   ~ 0
+3.3V
 Wire Wire Line
-	2950 6250 2950 6500
+	3050 4250 3050 3900
+Text Label 9350 3600 0    50   ~ 0
+12V
 Wire Wire Line
-	2950 6500 3000 6500
-Connection ~ 3000 6500
+	9150 3600 9350 3600
+Text Label 3150 4000 0    50   ~ 0
+5V
+Text Label 2850 4000 0    50   ~ 0
+5V
+Text Label 6050 6850 0    50   ~ 0
+CSN
+Text Label 6050 6950 0    50   ~ 0
+MOSI
+Text Label 6050 7050 0    50   ~ 0
+IRQ
+Text Label 5400 6850 2    50   ~ 0
+CE
+Text Label 5400 6950 2    50   ~ 0
+SCK
+Text Label 5400 7050 2    50   ~ 0
+MISO
+Text Label 6200 6750 0    50   ~ 0
+3.3V
+Text Label 2250 5550 2    50   ~ 0
+CE
+Text Label 2250 5950 2    50   ~ 0
+SCK
+Text Label 2250 5850 2    50   ~ 0
+MISO
+Text Label 2250 5650 2    50   ~ 0
+CSN
+Text Label 2250 5750 2    50   ~ 0
+MOSI
+Text Label 2250 5450 2    50   ~ 0
+IRQ
+Wire Wire Line
+	2250 5550 2450 5550
+Wire Wire Line
+	2450 5650 2250 5650
+Wire Wire Line
+	2450 5450 2250 5450
+Text Label 8200 2650 2    50   ~ 0
+REL
+Text Label 2250 5050 2    50   ~ 0
+REL
+Wire Wire Line
+	2450 5050 2250 5050
+Wire Wire Line
+	2450 5950 2250 5950
+Wire Wire Line
+	2450 5750 2250 5750
+Wire Wire Line
+	2450 5850 2250 5850
+Wire Wire Line
+	2950 6250 2950 6350
+Wire Wire Line
+	3050 6250 3050 6350
+Wire Wire Line
+	2850 4000 2850 4250
+Wire Wire Line
+	3150 4000 3150 4250
 $EndSCHEMATC
